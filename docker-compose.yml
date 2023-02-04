@@ -8,3 +8,15 @@ services:
       - ./api:/var/www
     ports:
       - "3000:3000"
+  db:
+    container_name: gin-todo-db
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gin_todo
+      MYSQL_USER: gin_todo
+      MYSQL_PASSWORD: root
