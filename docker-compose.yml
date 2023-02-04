@@ -10,7 +10,7 @@ services:
       - "3000:3000"
   db:
     container_name: gin-todo-db
-    image: mysql:latest
+    image: mysql:5.7
     ports:
       - "3306:3306"
     volumes:

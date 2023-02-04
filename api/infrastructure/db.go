@@ -1,28 +1,32 @@
 package infrastructure
 
 import (
-	dto "Tomoya185-miyawaki/gin-todo/infrastructure/dto"
 	"fmt"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
-)
+	"os"
 
-var (
-	db  *gorm.DB
-	err error
+	dto "github.com/Tomoya185-miyawaki/gin-todo/infrastructure/dto"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"github.com/joho/godotenv"
 )
 
 func Init() *gorm.DB {
-	config := "gin_todo:root@tcp(db:3306)/gin_todo?charset=utf8mb4&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(config), &gorm.Config{})
+	env := os.Getenv("ENV")
+	if env != "production" {
+		env = "development"
+	}
+	godotenv.Load(".env." + env)
+	godotenv.Load()
+
+	db, err := gorm.Open("mysql", os.Getenv("DB_CONNECT"))
 	if err != nil {
 		fmt.Println("db init error: ", err)
 	}
-	autoMigrate()
+	autoMigrate(db)
 
 	return db
 }
 
-func autoMigrate() {
+func autoMigrate(db *gorm.DB) {
 	db.AutoMigrate(&dto.Todo{})
 }

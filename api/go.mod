@@ -1,8 +1,12 @@
-module Tomoya185-miyawaki/gin-todo
+module github.com/Tomoya185-miyawaki/gin-todo
 
 go 1.20
 
-require github.com/gin-gonic/gin v1.8.2
+require (
+	github.com/gin-gonic/gin v1.8.2
+	github.com/jinzhu/gorm v1.9.16
+	github.com/joho/godotenv v1.5.0
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
@@ -26,6 +30,4 @@ require (
 	golang.org/x/text v0.5.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gorm.io/driver/mysql v1.4.5 // indirect
-	gorm.io/gorm v1.24.5 // indirect
 )
