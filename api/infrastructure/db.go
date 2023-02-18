@@ -11,6 +11,17 @@ import (
 )
 
 func Init() *gorm.DB {
+	db := openDB()
+	autoMigrate(db)
+
+	return db
+}
+
+func GetDB() *gorm.DB {
+	return openDB()
+}
+
+func openDB() *gorm.DB {
 	env := os.Getenv("ENV")
 	if env != "production" {
 		env = "development"
@@ -22,8 +33,6 @@ func Init() *gorm.DB {
 	if err != nil {
 		fmt.Println("db init error: ", err)
 	}
-	autoMigrate(db)
-
 	return db
 }
 
