@@ -1,3 +1,6 @@
+/*
+mainパッケージ
+*/
 package main
 
 import (

@@ -1,3 +1,6 @@
+/*
+todoのリポジトリ（実態）用パッケージ
+*/
 package todo
 
 import (

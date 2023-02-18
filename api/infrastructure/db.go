@@ -1,3 +1,6 @@
+/*
+DB用パッケージ
+*/
 package infrastructure
 
 import (
@@ -10,13 +13,17 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// DBの初期化
 func Init() *gorm.DB {
+	// DB接続する
 	db := openDB()
+	// マイグレーション
 	autoMigrate(db)
 
 	return db
 }
 
+// DBのコネクションを取得する
 func GetDB() *gorm.DB {
 	return openDB()
 }
@@ -36,6 +43,7 @@ func openDB() *gorm.DB {
 	return db
 }
 
+// マイグレーション
 func autoMigrate(db *gorm.DB) {
 	db.AutoMigrate(&dto.Todo{})
 }

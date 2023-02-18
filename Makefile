@@ -13,3 +13,7 @@ down:
 .PHONY: api
 api:
 	docker-compose exec api bash
+
+.PHONY: doc
+doc:
+	docker-compose exec api godoc -http=:9000

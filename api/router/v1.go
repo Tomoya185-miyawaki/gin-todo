@@ -1,3 +1,6 @@
+/*
+ルーティング用パッケージ
+*/
 package router
 
 import (
@@ -5,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// ルーティング処理を行う
 func Bind() {
 	router := gin.Default()
 	v1 := router.Group("/api/v1")
