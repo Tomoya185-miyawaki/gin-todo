@@ -15,6 +15,7 @@ func Bind() {
 	{
 		todoCtrl := todo.TodoController{}
 		v1.GET("/todo/:id", todoCtrl.Show)
+		v1.POST("/todo/create", todoCtrl.Create)
 		v1.GET("/todos", todoCtrl.Index)
 	}
 	router.Run(":3000")

@@ -14,4 +14,6 @@ type TodoQuery interface {
 	FindAll() *model.Todos
 	// IDをキーにして取得する
 	FindById(id int) (*model.Todo, *errors.AppError)
+	// 作成する
+	Create(title string) (*string, *errors.AppError)
 }
