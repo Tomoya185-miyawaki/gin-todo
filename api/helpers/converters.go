@@ -1,3 +1,6 @@
+/*
+ヘルパー用のパッケージ
+*/
 package helpers
 
 import (
@@ -5,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// レスポンスをjsonで返す
 func Response(c *gin.Context, result interface{}, err *errors.AppError) {
 	if err.HasErrors() {
 		c.JSON(400, err)

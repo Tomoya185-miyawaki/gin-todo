@@ -14,6 +14,7 @@ func Bind() {
 	v1 := router.Group("/api/v1")
 	{
 		todoCtrl := todo.TodoController{}
+		v1.GET("/todo/:id", todoCtrl.Show)
 		v1.GET("/todos", todoCtrl.Index)
 	}
 	router.Run(":3000")

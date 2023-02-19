@@ -1,3 +1,6 @@
+/*
+dto用のパッケージ
+*/
 package dto
 
 import (
@@ -7,7 +10,7 @@ import (
 )
 
 type Todo struct {
-	ID        uint      `json:"id" binding:"required"`
+	ID        int       `json:"id" binding:"required"`
 	Title     string    `json:"title" binding:"required"`
 	CreateAt  time.Time `gorm:"default:current_timestamp"`
 	UpdatedAt time.Time `gorm:"default:current_timestamp"`
@@ -15,6 +18,7 @@ type Todo struct {
 
 type Todos []Todo
 
+// todoのstructをmodelに変換する
 func (todo *Todo) ConvertToModel() *model.Todo {
 	return &model.Todo{
 		Id:    model.TodoId(todo.ID),
@@ -22,6 +26,7 @@ func (todo *Todo) ConvertToModel() *model.Todo {
 	}
 }
 
+// todosのstructをmodelに変換する
 func (todos Todos) ConvertToModel() *model.Todos {
 	result := make(model.Todos, len(todos))
 

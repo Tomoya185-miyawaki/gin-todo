@@ -1,3 +1,6 @@
+/*
+todoのドメイン用のパッケージ
+*/
 package model
 
 type TodoId int
