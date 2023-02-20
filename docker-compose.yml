@@ -9,6 +9,9 @@ services:
     ports:
       - "3000:3000"
       - "9000:9000"
+    depends_on: 
+      db:
+        condition: service_started
   db:
     container_name: gin-todo-db
     image: mysql:5.7
@@ -21,3 +24,11 @@ services:
       MYSQL_DATABASE: gin_todo
       MYSQL_USER: gin_todo
       MYSQL_PASSWORD: root
+  front:
+    container_name: gin-todo-front
+    build: ./infra/front/node
+    ports:
+      - 8000:8000
+    volumes:
+      - "./front:/var/www/html"
+    tty: true

@@ -17,3 +17,7 @@ api:
 .PHONY: doc
 doc:
 	docker-compose exec api godoc -http=:9000
+
+.PHONY: front
+front:
+	docker-compose exec front sh
