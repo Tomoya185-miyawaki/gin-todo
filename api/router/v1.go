@@ -5,12 +5,17 @@ package router
 
 import (
 	"github.com/Tomoya185-miyawaki/gin-todo/adapter/controller/todo"
+	cors "github.com/Tomoya185-miyawaki/gin-todo/middleware"
 	"github.com/gin-gonic/gin"
 )
 
 // ルーティング処理を行う
 func Bind() {
 	router := gin.Default()
+	// corsの設定
+	router.Use(cors.NewCorsConfig())
+
+	// v1apiのルーティング
 	v1 := router.Group("/api/v1")
 	{
 		todoCtrl := todo.TodoController{}

@@ -38,8 +38,16 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
+
+  // Server Configuration
   server: {
     port: 8000,
     host: '0.0.0.0'
+  },
+
+  // Env Configuration
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    baseAPIUrl: process.env.BASE_API_URL || 'http://localhost:3000/api/v1',
   }
 }
