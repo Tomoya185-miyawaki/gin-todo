@@ -4,6 +4,7 @@ todoのcontroller用のパッケージ
 package todo
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/Tomoya185-miyawaki/gin-todo/errors"
@@ -38,6 +39,7 @@ func (controller TodoController) Create(c *gin.Context) {
 		errors := errors.NewAppError(err.Error())
 		helpers.Response(c, nil, &errors)
 	}
+	fmt.Println(todoRequest)
 	result, err := todo.NewTodoQueryImpl().Create(todoRequest.Title)
 	if err.HasErrors() {
 		helpers.Response(c, nil, err)

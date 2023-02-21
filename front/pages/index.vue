@@ -23,9 +23,9 @@ export default {
   },
   fetchOnServer: false,
   async fetch() {
-    this.todos = await fetch(`${process.env.baseAPIUrl}/todos`).then(res =>
-      res.json()
+    this.todos = await this.$axios.get(`${process.env.baseAPIUrl}/todos`).then(res =>
+      res.data
     )
-  }  
+  }
 }
 </script>

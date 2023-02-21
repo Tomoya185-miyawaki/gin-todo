@@ -24,8 +24,8 @@ export default {
   },
   fetchOnServer: false,
   async fetch() {
-    this.todo = await fetch(`${process.env.baseAPIUrl}/todo/${this.$route.params.id}`).then(res =>
-      res.json()
+    this.todo = await this.$axios.get(`${process.env.baseAPIUrl}/todo/${this.$route.params.id}`).then(res =>
+      res.data
     )
   }  
 }

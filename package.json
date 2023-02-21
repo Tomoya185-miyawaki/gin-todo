@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@nuxtjs/axios": "^5.13.6"
+  }
+}
