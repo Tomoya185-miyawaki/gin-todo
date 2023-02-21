@@ -31,6 +31,7 @@ func (controller TodoController) Show(c *gin.Context) {
 	helpers.Response(c, result, nil)
 }
 
+// todoを作成する
 func (controller TodoController) Create(c *gin.Context) {
 	var todoRequest request.Todo
 	if err := c.Bind(&todoRequest); err != nil {

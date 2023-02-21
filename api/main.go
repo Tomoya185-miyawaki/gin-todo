@@ -11,5 +11,6 @@ import (
 func main() {
 	db := db.Init()
 	defer db.Close()
-	router.Bind()
+	r := router.Bind()
+	r.Run(":3000")
 }

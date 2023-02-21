@@ -10,7 +10,7 @@ import (
 )
 
 // ルーティング処理を行う
-func Bind() {
+func Bind() *gin.Engine {
 	router := gin.Default()
 	// corsの設定
 	router.Use(cors.NewCorsConfig())
@@ -23,5 +23,5 @@ func Bind() {
 		v1.POST("/todo/create", todoCtrl.Create)
 		v1.GET("/todos", todoCtrl.Index)
 	}
-	router.Run(":3000")
+	return router
 }

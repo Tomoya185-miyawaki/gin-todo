@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/Tomoya185-miyawaki/gin-todo/domain/model"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestTodoConvertToModel(t *testing.T) {
@@ -13,13 +14,12 @@ func TestTodoConvertToModel(t *testing.T) {
 		Title: "テストTODO",
 	}
 
-	result := *todo.ConvertToModel()
-	if result.Id != 1 {
-		t.Error("IDの値が異なります")
+	result := todo.ConvertToModel()
+	expected := &model.Todo{
+		Id:    model.TodoId(todo.ID),
+		Title: model.TodoTitle(todo.Title),
 	}
-	if result.Title != "テストTODO" {
-		t.Error("TITLEの値が異なります")
-	}
+	assert.Equal(t, *result, *expected)
 }
 
 func TestTodosConvertToModel(t *testing.T) {
@@ -35,19 +35,16 @@ func TestTodosConvertToModel(t *testing.T) {
 	todos := &Todos{*todo1, *todo2}
 
 	results := *todos.ConvertToModel()
-	expected1 := &model.Todo{
-		Id:    model.TodoId(todo1.ID),
-		Title: model.TodoTitle(todo1.Title),
-	}
-	expected2 := &model.Todo{
-		Id:    model.TodoId(todo2.ID),
-		Title: model.TodoTitle(todo2.Title),
+	expected := &model.Todos{
+		model.Todo{
+			Id:    model.TodoId(todo1.ID),
+			Title: model.TodoTitle(todo1.Title),
+		},
+		model.Todo{
+			Id:    model.TodoId(todo2.ID),
+			Title: model.TodoTitle(todo2.Title),
+		},
 	}
 
-	if results[0] != *expected1 {
-		t.Error("1番目のスライスの値が異なります")
-	}
-	if results[1] != *expected2 {
-		t.Error("2番目のスライスの値が異なります")
-	}
+	assert.Equal(t, results, *expected)
 }
